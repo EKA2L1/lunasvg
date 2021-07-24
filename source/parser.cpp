@@ -11,6 +11,7 @@
 #include "paintelement.h"
 #include "stopelement.h"
 #include "svgelement.h"
+#include "switchelement.h"
 #include "symbolelement.h"
 #include "useelement.h"
 #include "styleelement.h"
@@ -1008,6 +1009,7 @@ static const std::map<std::string, ElementId> elementmap = {
     {"style", ElementId::Style},
     {"solidColor", ElementId::SolidColor},
     {"svg", ElementId::Svg},
+    {"switch", ElementId::Switch},
     {"symbol", ElementId::Symbol},
     {"use", ElementId::Use}
 };
@@ -1629,6 +1631,8 @@ static inline std::unique_ptr<Element> createElement(ElementId id)
         return std::make_unique<LinearGradientElement>();
     case ElementId::RadialGradient:
         return std::make_unique<RadialGradientElement>();
+    case ElementId::Switch:
+        return std::make_unique<SwitchElement>();
     case ElementId::Symbol:
         return std::make_unique<SymbolElement>();
     case ElementId::Use:

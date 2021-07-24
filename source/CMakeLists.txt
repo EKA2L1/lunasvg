@@ -18,6 +18,7 @@ PRIVATE
     "${CMAKE_CURRENT_LIST_DIR}/styledelement.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/styleelement.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/svgelement.cpp"
+    "${CMAKE_CURRENT_LIST_DIR}/switchelement.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/symbolelement.cpp"
     "${CMAKE_CURRENT_LIST_DIR}/useelement.cpp"
 )
