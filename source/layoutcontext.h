@@ -302,6 +302,7 @@ public:
     MarkerData markerData;
     Visibility visibility;
     WindRule clipRule;
+    double opacity;
     const LayoutMask* masker;
     const LayoutClipPath* clipper;
 
@@ -338,21 +339,21 @@ public:
 
 public:
     std::shared_ptr<Canvas> canvas;
-    Transform matrix;
+    Transform transform;
 
 private:
     const LayoutObject* m_object;
     RenderMode m_mode;
 };
 
-class ParseDocument;
+class TreeBuilder;
 class StyledElement;
 class GeometryElement;
 
 class LayoutContext
 {
 public:
-    LayoutContext(const ParseDocument* document, LayoutSymbol* root);
+    LayoutContext(const TreeBuilder* builder, LayoutSymbol* root);
 
     Element* getElementById(const std::string& id) const;
     LayoutObject* getResourcesById(const std::string& id) const;
@@ -372,7 +373,7 @@ public:
     bool hasReference(const Element* element) const;
 
 private:
-    const ParseDocument* m_document;
+    const TreeBuilder* m_builder;
     LayoutSymbol* m_root;
     std::map<std::string, LayoutObject*> m_resourcesCache;
     std::set<const Element*> m_references;

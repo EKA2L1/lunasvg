@@ -4,7 +4,7 @@
 namespace lunasvg {
 
 SwitchElement::SwitchElement()
-    : GraphicsElement(ElementId::Switch)
+    : GraphicsElement(ElementID::Switch)
 {
 }
 

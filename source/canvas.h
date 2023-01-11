@@ -13,14 +13,10 @@ using GradientStops = std::vector<GradientStop>;
 
 using DashArray = std::vector<double>;
 
-class DashData
+struct DashData
 {
-public:
-    DashData() = default;
-
-public:
     DashArray array;
-    double offset{1.0};
+    double offset{0.0};
 };
 
 enum class TextureType
@@ -56,8 +52,6 @@ public:
     void blend(const Canvas* source, BlendMode mode, double opacity);
     void mask(const Rect& clip, const Transform& transform);
 
-    void clear(unsigned int value);
-    void rgba();
     void luminance();
 
     unsigned int width() const;
