@@ -11,6 +11,7 @@
 #include "paintelement.h"
 #include "stopelement.h"
 #include "svgelement.h"
+#include "switchelement.h"
 #include "symbolelement.h"
 #include "useelement.h"
 #include "styleelement.h"
@@ -999,6 +1000,7 @@ static inline ElementID elementid(const std::string& name)
         {"style", ElementID::Style},
         {"solidColor", ElementID::SolidColor},
         {"svg", ElementID::Svg},
+        {"switch", ElementID::Switch},
         {"symbol", ElementID::Symbol},
         {"use", ElementID::Use}
     };
@@ -1601,6 +1603,8 @@ static inline std::unique_ptr<Element> createElement(ElementID id)
         return makeUnique<LinearGradientElement>();
     case ElementID::RadialGradient:
         return makeUnique<RadialGradientElement>();
+    case ElementID::Switch:
+        return makeUnique<SwitchElement>();
     case ElementID::Symbol:
         return makeUnique<SymbolElement>();
     case ElementID::Use:

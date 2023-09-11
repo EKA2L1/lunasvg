@@ -30,6 +30,7 @@ enum class ElementID {
     Stop,
     Style,
     Svg,
+    Switch,
     Symbol,
     Use
 };
