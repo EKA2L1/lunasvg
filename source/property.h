@@ -4,68 +4,65 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <cstdint>
 
 namespace lunasvg {
 
-enum class Display
-{
+enum class Display {
     Inline,
     None
 };
 
-enum class Visibility
-{
+enum class Visibility {
     Visible,
     Hidden
 };
 
-enum class Overflow
-{
+enum class Overflow {
     Visible,
     Hidden
 };
 
-enum class LineCap
-{
+enum class LineCap {
     Butt,
     Round,
     Square
 };
 
-enum class LineJoin
-{
+enum class LineJoin {
     Miter,
     Round,
     Bevel
 };
 
-enum class WindRule
-{
+enum class WindRule {
     NonZero,
     EvenOdd
 };
 
-enum class Units
-{
+enum class Units {
     UserSpaceOnUse,
     ObjectBoundingBox
 };
 
-enum class SpreadMethod
-{
+enum class SpreadMethod {
     Pad,
     Reflect,
     Repeat
 };
 
-enum class MarkerUnits
-{
+enum class MarkerUnits {
     StrokeWidth,
     UserSpaceOnUse
 };
 
-class Color
+template<typename T>
+constexpr const T& clamp(const T& val, const T& lo, const T& hi)
 {
+    return (val < lo) ? lo : (hi < val) ? hi : val;
+}
+
+class Color {
 public:
     Color() = default;
     explicit Color(uint32_t value) : m_value(value) {}
@@ -91,8 +88,7 @@ private:
     uint32_t m_value{0};
 };
 
-class Paint
-{
+class Paint {
 public:
     Paint() = default;
     Paint(const Color& color);
@@ -107,8 +103,7 @@ public:
     Color m_color{Color::Transparent};
 };
 
-class Point
-{
+class Point {
 public:
     Point() = default;
     Point(double x, double y);
@@ -122,8 +117,7 @@ using PointList = std::vector<Point>;
 
 class Box;
 
-class Rect
-{
+class Rect {
 public:
     Rect() = default;
     Rect(double x, double y, double w, double h);
@@ -150,8 +144,7 @@ public:
 
 class Matrix;
 
-class Transform
-{
+class Transform {
 public:
     Transform() = default;
     Transform(double m00, double m10, double m01, double m11, double m02, double m12);
@@ -192,16 +185,14 @@ public:
     double m12{0};
 };
 
-enum class PathCommand
-{
+enum class PathCommand {
     MoveTo,
     LineTo,
     CubicTo,
     Close
 };
 
-class Path
-{
+class Path {
 public:
     Path() = default;
 
@@ -228,8 +219,7 @@ private:
     std::vector<Point> m_points;
 };
 
-class PathIterator
-{
+class PathIterator {
 public:
    PathIterator(const Path& path);
 
@@ -244,8 +234,7 @@ private:
    unsigned int m_index{0};
 };
 
-enum class LengthUnits
-{
+enum class LengthUnits {
     Unknown,
     Number,
     Px,
@@ -259,8 +248,7 @@ enum class LengthUnits
     Percent
 };
 
-enum LengthMode
-{
+enum LengthMode {
     Width,
     Height,
     Both
@@ -268,8 +256,7 @@ enum LengthMode
 
 class Element;
 
-class Length
-{
+class Length {
 public:
     Length() = default;
     Length(double value);
@@ -298,8 +285,7 @@ private:
 
 using LengthList = std::vector<Length>;
 
-class LengthContext
-{
+class LengthContext {
 public:
     LengthContext(const Element* element);
     LengthContext(const Element* element, Units units);
@@ -311,8 +297,7 @@ private:
     Units m_units{Units::UserSpaceOnUse};
 };
 
-enum class Align
-{
+enum class Align {
     None,
     xMinYMin,
     xMidYMin,
@@ -325,14 +310,12 @@ enum class Align
     xMaxYMax
 };
 
-enum class MeetOrSlice
-{
+enum class MeetOrSlice {
     Meet,
     Slice
 };
 
-class PreserveAspectRatio
-{
+class PreserveAspectRatio {
 public:
     PreserveAspectRatio() = default;
     PreserveAspectRatio(Align align, MeetOrSlice scale);
@@ -348,14 +331,12 @@ private:
     MeetOrSlice m_scale{MeetOrSlice::Meet};
 };
 
-enum class MarkerOrient
-{
+enum class MarkerOrient {
     Auto,
     Angle
 };
 
-class Angle
-{
+class Angle {
 public:
     Angle() = default;
     Angle(MarkerOrient type);
