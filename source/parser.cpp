@@ -1604,7 +1604,7 @@ static inline std::unique_ptr<Element> createElement(ElementID id)
     case ElementID::RadialGradient:
         return makeUnique<RadialGradientElement>();
     case ElementID::Switch:
-        return std::make_unique<SwitchElement>();
+        return makeUnique<SwitchElement>();
     case ElementID::Symbol:
         return makeUnique<SymbolElement>();
     case ElementID::Use:
